@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/chorespp.png</file>
+        <file>icons/edit-delete.png</file>
+        <file>icons/edit.png</file>
+        <file>icons/help-about.png</file>
+        <file>icons/document-new.png</file>
+        <file>icons/go-down.png</file>
+        <file>icons/go-up.png</file>
+        <file>icons/chorespp.ico</file>
+        <file>icons/application-pdf.png</file>
+        <file>icons/gtk-apply.png</file>
+    </qresource>
+</RCC>

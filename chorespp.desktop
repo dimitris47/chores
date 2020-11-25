@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Chores
+#Name[el_GR]=
+Comment=A simple and very lightweight to-do app
+#Comment[el_GR]=
+Exec=chorespp
+Icon=chorespp.png
+Terminal=false
+Categories=Utility;
+Keywords=to-do;chores;QT;DP;
