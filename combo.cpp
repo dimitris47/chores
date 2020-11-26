@@ -10,15 +10,16 @@ Combo::~Combo() { delete ui; }
 
 void Combo::on_restButton_clicked() {
     text = ui->listWidget->currentItem()->text();
-    QListWidgetItem *item = ui->listWidget->takeItem(ui->listWidget->currentRow());
+    p = ui->listWidget->currentRow();
+    QListWidgetItem *item = ui->listWidget->takeItem(p);
     delete item;
     emit restored();
 }
 
 void Combo::on_delButton_clicked() {
     text = ui->listWidget->currentItem()->text();
-    QListWidgetItem *item = ui->listWidget->takeItem(ui->listWidget->currentRow());
     p = ui->listWidget->currentRow();
+    QListWidgetItem *item = ui->listWidget->takeItem(p);
     delete item;
     emit deleted();
 }
