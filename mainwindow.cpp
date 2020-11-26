@@ -63,14 +63,14 @@ void MainWindow::permDelete() {
 void MainWindow::restoreDeleted() {
     Combo *c = qobject_cast<Combo *>(sender());
     complTasks.removeAt(c->p);
-    int i {0};
     auto widget = new Form(ui->frame, QString(c->text));
     connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
     connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
-    widget->setObjectName(QString::fromUtf8("restItem") + QString::number(i));
+    widget->setObjectName(QString::fromUtf8("restItem") + QString::number(restored));
     widget->setAttribute(Qt::WA_DeleteOnClose);
     layout->addWidget(widget);
     widget->show();
+    restored++;
 }
 
 void MainWindow::on_actionShow_Completed_triggered() {
@@ -124,6 +124,7 @@ void MainWindow::readSettings() {
     const QStringList completedItems = settings.value("completed", QStringList()).toStringList();
     for (QString task : completedItems)
         complTasks.append(task);
+    restored = 0;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {

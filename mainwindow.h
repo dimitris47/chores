@@ -42,6 +42,7 @@ signals:
 private:
     Ui::MainWindow *ui;
     int lines;
+    int restored;
     QStringList tasks;
     QVBoxLayout *layout = new QVBoxLayout;
 };
