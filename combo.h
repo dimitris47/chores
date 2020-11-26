@@ -20,6 +20,7 @@ signals:
 
 private slots:
     void on_delButton_clicked();
+    void on_listWidget_currentRowChanged(int currentRow);
     void on_restButton_clicked();
 
 private:
