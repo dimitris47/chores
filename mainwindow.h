@@ -44,7 +44,7 @@ private:
     int lines;
     int restored;
     QStringList tasks;
-    QVBoxLayout *layout = new QVBoxLayout;
+    QVBoxLayout *layout;
 };
 
 #endif // MAINWINDOW_H

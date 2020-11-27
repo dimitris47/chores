@@ -11,6 +11,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    layout = new QVBoxLayout;
     ui->frame->setLayout(layout);
     readSettings();
 }
@@ -19,17 +20,19 @@ MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::on_addButton_clicked() {
     QString text = ui->lineEdit->text();
-    auto widget = new Form(ui->frame, text);
-    connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
-    connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
-    tasks.append(text);
-    widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    layout->addWidget(widget);
-    widget->show();
-    ui->lineEdit->clear();
-    ui->lineEdit->setFocus();
-    lines++;
+    if (text != "") {
+        auto widget = new Form(ui->frame, text);
+        connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
+        connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
+        tasks.append(text);
+        widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
+        widget->setAttribute(Qt::WA_DeleteOnClose);
+        layout->addWidget(widget);
+        widget->show();
+        ui->lineEdit->clear();
+        ui->lineEdit->setFocus();
+        lines++;
+    }
 }
 
 void MainWindow::on_lineEdit_returnPressed() {
