@@ -35,9 +35,7 @@ void MainWindow::on_addButton_clicked() {
     }
 }
 
-void MainWindow::on_lineEdit_returnPressed() {
-    on_addButton_clicked();
-}
+void MainWindow::on_lineEdit_returnPressed() { on_addButton_clicked(); }
 
 void MainWindow::doUpdates() {
     Form *f = qobject_cast<Form *>(sender());
