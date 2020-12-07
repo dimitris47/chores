@@ -4,6 +4,7 @@
 #include <QCloseEvent>
 #include <QMainWindow>
 #include <QSettings>
+#include <QSystemTrayIcon>
 #include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -33,11 +34,11 @@ private slots:
     void on_actionExport_triggered();
     void on_actionShow_Completed_triggered();
     void on_addButton_clicked();
+    void on_exit();
     void on_lineEdit_returnPressed();
+    void on_show_hide();
+    void on_toggle_show(QSystemTrayIcon::ActivationReason r);
     void readSettings();
-
-signals:
-    void formClosed();
 
 private:
     Ui::MainWindow *ui;
@@ -45,6 +46,7 @@ private:
     int restored;
     QStringList tasks;
     QVBoxLayout *layout;
+    void createTrayIcon();
 };
 
 #endif // MAINWINDOW_H

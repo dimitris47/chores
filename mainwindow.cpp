@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     layout = new QVBoxLayout;
     ui->frame->setLayout(layout);
     readSettings();
+    createTrayIcon();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -95,6 +96,48 @@ void MainWindow::on_actionExport_triggered() {
     QTextDocument doc;
     doc.setHtml(taskList.join("<br/><br/>"));
     doc.print(&printer);
+}
+
+void MainWindow::createTrayIcon() {
+    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon(":/icons/chorespp.png"), this);
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(on_toggle_show(QSystemTrayIcon::ActivationReason)));
+    QAction *quit_action = new QAction("Exit", trayIcon);
+    connect(quit_action, SIGNAL(triggered()), this, SLOT(on_exit()));
+    QAction *show_hide_action = new QAction("Show/Hide", trayIcon);
+    connect(show_hide_action, SIGNAL(triggered()), this, SLOT(on_show_hide()));
+
+    QMenu *trayIconMenu = new QMenu;
+    trayIconMenu->addAction(show_hide_action);
+    trayIconMenu->addAction(quit_action);
+    trayIcon->setContextMenu(trayIconMenu);
+    trayIcon->show();
+}
+
+void MainWindow::on_toggle_show(QSystemTrayIcon::ActivationReason r) {
+    if (r)
+        if (r != QSystemTrayIcon::DoubleClick)
+            return;
+    if (isVisible())
+        hide();
+    else {
+        show();
+        raise();
+        setFocus();
+    }
+}
+
+void MainWindow::on_show_hide() {
+    if (isVisible())
+        hide();
+    else {
+        show();
+        raise();
+        setFocus();
+    }
+}
+
+void MainWindow::on_exit() {
+    this->close();
 }
 
 void MainWindow::readSettings() {
