@@ -19,6 +19,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow() { delete ui; }
 
+QString dirToWrite() {
+    static QString dir;
+    if (!dir.isEmpty())
+        return dir;
+    QStringList locations = (QStringList()
+                             << QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)
+                             << QStandardPaths::standardLocations(QStandardPaths::HomeLocation));
+    for (const QString & loc : locations)
+        if (QFileInfo::exists(loc)) {
+            dir = loc;
+            return dir;
+        }
+    return QString();
+}
+
 void MainWindow::on_addButton_clicked() {
     QString text = ui->lineEdit->text();
     if (text != "") {
@@ -83,7 +98,7 @@ void MainWindow::on_actionShow_Completed_triggered() {
 }
 
 void MainWindow::on_actionExport_triggered() {
-    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", dirToWrite(), "*.pdf");
     if (QFileInfo(fileName).suffix().isEmpty())
         fileName.append(".pdf");
     QPrinter printer(QPrinter::PrinterResolution);
