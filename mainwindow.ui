@@ -71,7 +71,7 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>480</height>
+        <height>496</height>
        </size>
       </property>
       <property name="verticalScrollBarPolicy">
@@ -81,7 +81,7 @@
        <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -95,7 +95,7 @@
          <x>0</x>
          <y>0</y>
          <width>475</width>
-         <height>478</height>
+         <height>494</height>
         </rect>
        </property>
       </widget>
