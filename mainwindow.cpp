@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
     layout = new QVBoxLayout;
     ui->frame->setLayout(layout);
+    layout->setAlignment(Qt::AlignTop);
     readSettings();
     createTrayIcon();
 }

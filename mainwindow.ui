@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>495</width>
-    <height>656</height>
+    <height>586</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -63,9 +63,9 @@
     <item row="0" column="0" rowspan="2" colspan="2" alignment="Qt::AlignTop">
      <widget class="QScrollArea" name="area">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
         <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
+        <verstretch>49</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
@@ -97,6 +97,12 @@
          <width>475</width>
          <height>494</height>
         </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
       </widget>
      </widget>
