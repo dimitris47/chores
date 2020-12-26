@@ -32,7 +32,11 @@ void Form::on_downButton_clicked() {
     QString chore = ui->label->text();
     int i = choresList.indexOf(chore);
     if (i < choresList.size()-1)
-        choresList.swap(i, i+1);
+        #if QT_VERSION >= 0x050C00
+            choresList.swapItemsAt(i, i+1);
+        #else
+            choresList.swap(i, i+1);
+        #endif
     emit valueChanged();
     choresList.clear();
 }
@@ -44,7 +48,11 @@ void Form::on_upButton_clicked() {
     QString chore = ui->label->text();
     int i = choresList.indexOf(chore);
     if (i)
-        choresList.swap(i, i-1);
+        #if QT_VERSION >= 0x050C00
+            choresList.swapItemsAt(i, i-1);
+        #else
+            choresList.swap(i, i-1);
+        #endif
     emit valueChanged();
     choresList.clear();
 }
