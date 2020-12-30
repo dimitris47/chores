@@ -206,7 +206,8 @@ void MainWindow::on_actionAbout_triggered() {
     QMessageBox::about(this, tr("Program Info"),
                        (QApplication::applicationName() + " " + QApplication::applicationVersion() + "<br/><br/>" +
                         tr("Program created by Dimitris Psathas<br/><br/>"
-                           "Written in C++, built against the Qt5 toolkit<br/><br/>"
-                           "Published under the GNU General Public License v3.0<br/><br/>"
-                           "&copy; 2020")));
+                           "Written in C++, built with the Qt5 toolkit<br/><br/>"
+                           "Published under the GNU General Public License v3.0<br/>"
+                           "Using Qt libraries under (L)GPL3<br/><br/>"
+                           "&copy; Dimitris Psathas, 2020")));
 }

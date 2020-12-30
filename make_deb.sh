@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 PACKAGE=chorespp
-VERSION=1.4
+VERSION=1.5
 SRCDIR=$(pwd)
 BUILDDIR=/tmp/build-${PACKAGE}-${VERSION}
 
