@@ -35,7 +35,7 @@ unix:!android {
     icon.path = /usr/share/pixmaps
     icon.files = icons/chorespp.png
     desktop.path = /usr/share/applications
-    desktop.files = icons/chorespp.desktop
+    desktop.files = chorespp.desktop
     INSTALLS += target icon desktop
 }
 

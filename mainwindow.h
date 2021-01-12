@@ -38,7 +38,6 @@ private slots:
     void on_lineEdit_returnPressed();
     void on_show_hide();
     void on_toggle_show(QSystemTrayIcon::ActivationReason r);
-    void readSettings();
 
 private:
     Ui::MainWindow *ui;
@@ -47,6 +46,7 @@ private:
     QStringList tasks;
     QVBoxLayout *layout;
     void createTrayIcon();
+    void readSettings();
 };
 
 #endif // MAINWINDOW_H
