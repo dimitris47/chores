@@ -98,6 +98,10 @@ void MainWindow::on_actionShow_Completed_triggered() {
     widget->exec();
 }
 
+void MainWindow::on_actionFont_triggered() {
+    QApplication::setFont(QFontDialog::getFont(0, QApplication::font()));
+}
+
 void MainWindow::on_actionExport_triggered() {
     QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", dirToWrite(), "*.pdf");
     if (QFileInfo(fileName).suffix().isEmpty())
@@ -113,6 +117,17 @@ void MainWindow::on_actionExport_triggered() {
     doc.setHtml(taskList.join("<br/><br/>"));
     doc.print(&printer);
 }
+
+void MainWindow::on_actionAbout_triggered() {
+    QMessageBox::about(this, tr("Program Info"),
+                       (QApplication::applicationName() + " " + QApplication::applicationVersion() + "<br/><br/>" +
+                        tr("Program created by Dimitris Psathas<br/><br/>"
+                           "Written in C++, built with the Qt5 toolkit<br/><br/>"
+                           "Published under the GNU General Public License v3.0<br/>"
+                           "Using Qt libraries under (L)GPL3<br/><br/>"
+                           "&copy; Dimitris Psathas, 2020")));
+}
+
 
 void MainWindow::createTrayIcon() {
     QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon(":/icons/chorespp.png"), this);
@@ -184,6 +199,10 @@ void MainWindow::readSettings() {
     const QStringList completedItems = settings.value("completed", QStringList()).toStringList();
     for (QString task : completedItems)
         complTasks.append(task);
+    const QString f = settings.value("font", QFont()).toString();
+    const int s = settings.value("size", 11).toInt();
+    const QFont font(f, s);
+    QApplication::setFont(font);
     restored = 0;
 }
 
@@ -199,15 +218,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
         tasks.append(label->text());
     settings.setValue("tasks", tasks);
     settings.setValue("completed", complTasks);
+    settings.setValue("font", QApplication::font().toString());
+    settings.setValue("size", QApplication::font().pointSize());
     event->accept();
-}
-
-void MainWindow::on_actionAbout_triggered() {
-    QMessageBox::about(this, tr("Program Info"),
-                       (QApplication::applicationName() + " " + QApplication::applicationVersion() + "<br/><br/>" +
-                        tr("Program created by Dimitris Psathas<br/><br/>"
-                           "Written in C++, built with the Qt5 toolkit<br/><br/>"
-                           "Published under the GNU General Public License v3.0<br/>"
-                           "Using Qt libraries under (L)GPL3<br/><br/>"
-                           "&copy; Dimitris Psathas, 2020")));
 }

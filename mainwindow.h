@@ -39,6 +39,8 @@ private slots:
     void on_show_hide();
     void on_toggle_show(QSystemTrayIcon::ActivationReason r);
 
+    void on_actionFont_triggered();
+
 private:
     Ui::MainWindow *ui;
     int lines;

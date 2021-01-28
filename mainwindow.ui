@@ -129,6 +129,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionShow_Completed"/>
+   <addaction name="actionFont"/>
    <addaction name="actionExport"/>
    <addaction name="actionAbout"/>
   </widget>
@@ -172,6 +173,15 @@
    </property>
    <property name="toolTip">
     <string>Show completed tasks</string>
+   </property>
+  </action>
+  <action name="actionFont">
+   <property name="icon">
+    <iconset resource="chorespp.qrc">
+     <normaloff>:/icons/font.png</normaloff>:/icons/font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Font</string>
    </property>
   </action>
  </widget>
