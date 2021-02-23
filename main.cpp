@@ -4,7 +4,7 @@
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
-    RunGuard guard("some_random_key");
+    RunGuard guard("a_key");
     if (!guard.tryToRun())
         return 0;
     QApplication a(argc, argv);

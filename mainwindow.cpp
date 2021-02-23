@@ -126,8 +126,8 @@ void MainWindow::on_actionAbout_triggered() {
                         tr("Program created by Dimitris Psathas<br/><br/>"
                            "Written in C++, built with the Qt5 toolkit<br/><br/>"
                            "Published under the GNU General Public License v3.0<br/>"
-                           "Using Qt libraries under (L)GPL3<br/><br/>"
-                           "&copy; Dimitris Psathas, 2020")));
+                           "Qt libraries used under (L)GPL3<br/><br/>"
+                           "&copy; 2020-2021 Dimitris Psathas")));
 }
 
 void MainWindow::createTrayIcon() {
