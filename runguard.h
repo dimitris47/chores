@@ -1,3 +1,5 @@
+// props to https://stackoverflow.com/users/1035613/dmitry-sazonov for this class
+
 #ifndef RUNGUARD_H
 #define RUNGUARD_H
 
