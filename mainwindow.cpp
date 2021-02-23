@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow() { delete ui; }
 
+void MainWindow::on_exit() { this->close(); }
+
 QString dirToWrite() {
     static QString dir;
     if (!dir.isEmpty())
@@ -58,11 +60,11 @@ void MainWindow::doUpdates() {
     Form *f = qobject_cast<Form *>(sender());
     tasks.clear();
     choreList = f->choresList;
-    for (QString chore : choreList)
+    for (auto &&chore : choreList)
         tasks.append(chore);
     auto labelList = ui->frame->findChildren<QLabel *>();
     int i {0};
-    for (auto label : labelList) {
+    for (auto &&label : labelList) {
         label->setText(tasks[i]);
         i++;
     }
@@ -111,7 +113,7 @@ void MainWindow::on_actionExport_triggered() {
     printer.setPaperSize(QPrinter::A4);
     printer.setOutputFileName(fileName);
     QStringList taskList;
-    for (auto widget : ui->frame->findChildren<QLabel *>())
+    for (auto &&widget : ui->frame->findChildren<QLabel *>())
         taskList.append("<span>&#8226; " + widget->text() + "</span>");
     QTextDocument doc;
     doc.setHtml(taskList.join("<br/><br/>"));
@@ -127,7 +129,6 @@ void MainWindow::on_actionAbout_triggered() {
                            "Using Qt libraries under (L)GPL3<br/><br/>"
                            "&copy; Dimitris Psathas, 2020")));
 }
-
 
 void MainWindow::createTrayIcon() {
     QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon(":/icons/chorespp.png"), this);
@@ -167,10 +168,6 @@ void MainWindow::on_show_hide() {
     }
 }
 
-void MainWindow::on_exit() {
-    this->close();
-}
-
 void MainWindow::readSettings() {
     QSettings settings;
     bool isMax = settings.value("isMaximized", false).toBool();
@@ -186,7 +183,7 @@ void MainWindow::readSettings() {
     else
         lines = 1;
     const QStringList taskList = settings.value("tasks", QStringList()).toStringList();
-    for (auto task : taskList) {
+    for (auto &&task : taskList) {
         tasks.append(task);
         auto widget = new Form(ui->frame, QString(task));
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
@@ -197,7 +194,7 @@ void MainWindow::readSettings() {
         widget->show();
     }
     const QStringList completedItems = settings.value("completed", QStringList()).toStringList();
-    for (QString task : completedItems)
+    for (auto &&task : completedItems)
         complTasks.append(task);
     const QString f = settings.value("font", QFont()).toString();
     const int s = settings.value("size", 11).toInt();
@@ -214,7 +211,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     settings.setValue("lines", ui->frame->children().count());
     tasks.clear();
     auto labelList = ui->frame->findChildren<QLabel *>();
-    for (auto label : labelList)
+    for (auto &&label : labelList)
         tasks.append(label->text());
     settings.setValue("tasks", tasks);
     settings.setValue("completed", complTasks);

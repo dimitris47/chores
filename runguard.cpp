@@ -18,8 +18,7 @@ RunGuard::RunGuard( const QString& key )
     , sharedMem(sharedmemKey)
     , memLock(memLockKey, 1)
 {
-    memLock.acquire();
-    {
+    memLock.acquire(); {
         QSharedMemory fix(sharedmemKey);
         fix.attach();
     }
