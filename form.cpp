@@ -27,7 +27,7 @@ void Form::on_deleteButton_clicked() {
 
 void Form::on_downButton_clicked() {
     auto formsList = this->parent()->findChildren<QLabel *>();
-    for (auto label : formsList)
+    for (auto &&label : formsList)
         choresList.append(label->text());
     QString chore = ui->label->text();
     int i = choresList.indexOf(chore);
@@ -43,7 +43,7 @@ void Form::on_downButton_clicked() {
 
 void Form::on_upButton_clicked() {
     auto formsList = this->parent()->findChildren<QLabel *>();
-    for (auto label : formsList)
+    for (auto &&label : formsList)
         choresList.append(label->text());
     QString chore = ui->label->text();
     int i = choresList.indexOf(chore);
