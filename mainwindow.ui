@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>495</width>
-    <height>587</height>
+    <height>598</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -71,7 +71,7 @@
       <property name="minimumSize">
        <size>
         <width>360</width>
-        <height>496</height>
+        <height>504</height>
        </size>
       </property>
       <property name="verticalScrollBarPolicy">
@@ -95,7 +95,7 @@
          <x>0</x>
          <y>0</y>
          <width>475</width>
-         <height>494</height>
+         <height>502</height>
         </rect>
        </property>
        <property name="sizePolicy">

@@ -29,7 +29,7 @@ QString dirToWrite() {
     QStringList locations = (QStringList()
                              << QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)
                              << QStandardPaths::standardLocations(QStandardPaths::HomeLocation));
-    for (const QString & loc : locations)
+    for (auto &&loc : locations)
         if (QFileInfo::exists(loc)) {
             dir = loc;
             return dir;
@@ -110,7 +110,7 @@ void MainWindow::on_actionExport_triggered() {
         fileName.append(".pdf");
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setPaperSize(QPrinter::A4);
+    printer.setPageSize(QPageSize(QPageSize::A4));
     printer.setOutputFileName(fileName);
     QStringList taskList;
     for (auto &&widget : ui->frame->findChildren<QLabel *>())

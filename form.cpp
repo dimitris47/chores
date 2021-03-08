@@ -8,6 +8,7 @@ Form::Form() {}
 Form::Form(QWidget *parent, QString text) : QWidget(parent), ui(new Ui::Form) {
     ui->setupUi(this);
     ui->label->setText(text);
+    ui->label->setToolTip(text);
     ui->label->setWordWrap(true);
     this->adjustSize();
 }
