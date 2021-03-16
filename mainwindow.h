@@ -32,14 +32,13 @@ public slots:
 private slots:
     void on_actionAbout_triggered();
     void on_actionExport_triggered();
+    void on_actionFont_triggered();
     void on_actionShow_Completed_triggered();
     void on_addButton_clicked();
     void on_exit();
     void on_lineEdit_returnPressed();
-    void on_show_hide();
-    void on_toggle_show(QSystemTrayIcon::ActivationReason r);
-
-    void on_actionFont_triggered();
+    void on_showHide();
+    void on_toggleShow();
 
 private:
     Ui::MainWindow *ui;

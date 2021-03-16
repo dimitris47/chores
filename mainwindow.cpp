@@ -132,23 +132,23 @@ void MainWindow::on_actionAbout_triggered() {
 
 void MainWindow::createTrayIcon() {
     QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon(":/icons/chorespp.png"), this);
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(on_toggle_show(QSystemTrayIcon::ActivationReason)));
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(on_toggleShow()));
+
     QAction *quit_action = new QAction("Exit", trayIcon);
     connect(quit_action, SIGNAL(triggered()), this, SLOT(on_exit()));
+
     QAction *show_hide_action = new QAction("Show/Hide", trayIcon);
-    connect(show_hide_action, SIGNAL(triggered()), this, SLOT(on_show_hide()));
+    connect(show_hide_action, SIGNAL(triggered()), this, SLOT(on_showHide()));
 
     QMenu *trayIconMenu = new QMenu;
     trayIconMenu->addAction(show_hide_action);
     trayIconMenu->addAction(quit_action);
+
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
 }
 
-void MainWindow::on_toggle_show(QSystemTrayIcon::ActivationReason r) {
-    if (r)
-        if (r != QSystemTrayIcon::DoubleClick)
-            return;
+void MainWindow::on_toggleShow() {
     if (isVisible())
         hide();
     else {
@@ -158,7 +158,7 @@ void MainWindow::on_toggle_show(QSystemTrayIcon::ActivationReason r) {
     }
 }
 
-void MainWindow::on_show_hide() {
+void MainWindow::on_showHide() {
     if (isVisible())
         hide();
     else {
