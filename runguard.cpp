@@ -11,7 +11,7 @@ namespace {
     }
 }
 
-RunGuard::RunGuard( const QString& key )
+RunGuard::RunGuard(const QString& key)
     : key(key)
     , memLockKey(generateKeyHash(key, "_memLockKey"))
     , sharedmemKey(generateKeyHash(key, "_sharedmemKey"))

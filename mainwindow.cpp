@@ -138,7 +138,7 @@ void MainWindow::createTrayIcon() {
     connect(quit_action, SIGNAL(triggered()), this, SLOT(on_exit()));
 
     QAction *show_hide_action = new QAction("Show/Hide", trayIcon);
-    connect(show_hide_action, SIGNAL(triggered()), this, SLOT(on_showHide()));
+    connect(show_hide_action, SIGNAL(triggered()), this, SLOT(on_toggleShow()));
 
     QMenu *trayIconMenu = new QMenu;
     trayIconMenu->addAction(show_hide_action);
@@ -149,20 +149,15 @@ void MainWindow::createTrayIcon() {
 }
 
 void MainWindow::on_toggleShow() {
-    if (isVisible())
+    QSettings settings;
+    if (isVisible()) {
+        settings.setValue("geometry", saveGeometry());
         hide();
-    else {
-        show();
-        raise();
-        setFocus();
     }
-}
-
-void MainWindow::on_showHide() {
-    if (isVisible())
-        hide();
     else {
         show();
+        const QByteArray geometry = settings.value("geometry", QByteArray()).toByteArray();
+        restoreGeometry(geometry);
         raise();
         setFocus();
     }

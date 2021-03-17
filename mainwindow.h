@@ -37,7 +37,6 @@ private slots:
     void on_addButton_clicked();
     void on_exit();
     void on_lineEdit_returnPressed();
-    void on_showHide();
     void on_toggleShow();
 
 private:
