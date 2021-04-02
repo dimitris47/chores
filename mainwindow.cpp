@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(frame);
     setCentralWidget(scrollArea);
+    ui->lineEdit->setAlignment(Qt::AlignHCenter);
+    ui->lineEdit->setPlaceholderText("new task");
     layout->addWidget(ui->lineEdit);
 
     readSettings();
