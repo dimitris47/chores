@@ -37,74 +37,11 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0" alignment="Qt::AlignBottom">
-     <widget class="QLineEdit" name="lineEdit"/>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="addButton">
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add task&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
+    <item row="0" column="0" alignment="Qt::AlignBottom">
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="placeholderText">
        <string/>
       </property>
-      <property name="icon">
-       <iconset resource="chorespp.qrc">
-        <normaloff>:/icons/document-new.png</normaloff>:/icons/document-new.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="2" colspan="2" alignment="Qt::AlignTop">
-     <widget class="QScrollArea" name="area">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
-        <horstretch>0</horstretch>
-        <verstretch>49</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>360</width>
-        <height>504</height>
-       </size>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-      <widget class="QWidget" name="frame">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>475</width>
-         <height>502</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -128,6 +65,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionAddTask"/>
    <addaction name="actionShow_Completed"/>
    <addaction name="actionFont"/>
    <addaction name="actionExport"/>
@@ -182,6 +120,18 @@
    </property>
    <property name="text">
     <string>Font</string>
+   </property>
+  </action>
+  <action name="actionAddTask">
+   <property name="icon">
+    <iconset resource="chorespp.qrc">
+     <normaloff>:/icons/document-new.png</normaloff>:/icons/document-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add task to list</string>
+   </property>
+   <property name="toolTip">
+    <string>Add task to list</string>
    </property>
   </action>
  </widget>

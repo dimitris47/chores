@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QCloseEvent>
+#include <QFrame>
 #include <QMainWindow>
 #include <QSettings>
 #include <QSystemTrayIcon>
@@ -31,10 +32,10 @@ public slots:
 
 private slots:
     void on_actionAbout_triggered();
+    void on_actionAddTask_triggered();
     void on_actionExport_triggered();
     void on_actionFont_triggered();
     void on_actionShow_Completed_triggered();
-    void on_addButton_clicked();
     void on_exit();
     void on_lineEdit_returnPressed();
     void on_toggleShow();
@@ -45,6 +46,7 @@ private:
     int restored;
     QStringList tasks;
     QVBoxLayout *layout;
+    QFrame *frame;
     void createTrayIcon();
     void readSettings();
 };

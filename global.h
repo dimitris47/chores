@@ -4,7 +4,7 @@
 #include <QString>
 
 const QString APPNAME("Chores");
-const QString VERSION("1.9.1");
+const QString VERSION("1.10");
 const QString CONTRIBUTORS("Dimitris Psathas");
 
 #endif // GLOBAL_H

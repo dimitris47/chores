@@ -7,13 +7,22 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QPrinter>
+#include <QScrollArea>
 #include <QtWidgets>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     layout = new QVBoxLayout;
-    ui->frame->setLayout(layout);
+    frame = new QFrame;
+    frame->setLayout(layout);
     layout->setAlignment(Qt::AlignTop);
+
+    QScrollArea *scrollArea  = new QScrollArea();
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setWidget(frame);
+    setCentralWidget(scrollArea);
+    layout->addWidget(ui->lineEdit);
+
     readSettings();
     createTrayIcon();
 }
@@ -37,10 +46,10 @@ QString dirToWrite() {
     return QString();
 }
 
-void MainWindow::on_addButton_clicked() {
+void MainWindow::on_lineEdit_returnPressed() {
     QString text = ui->lineEdit->text();
     if (text != "") {
-        auto widget = new Form(ui->frame, text);
+        auto widget = new Form(frame, text);
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
         connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
         tasks.append(text);
@@ -54,7 +63,10 @@ void MainWindow::on_addButton_clicked() {
     }
 }
 
-void MainWindow::on_lineEdit_returnPressed() { on_addButton_clicked(); }
+void MainWindow::on_actionAddTask_triggered() {
+    on_lineEdit_returnPressed();
+}
+
 
 void MainWindow::doUpdates() {
     Form *f = qobject_cast<Form *>(sender());
@@ -62,7 +74,7 @@ void MainWindow::doUpdates() {
     choreList = f->choresList;
     for (auto &&chore : choreList)
         tasks.append(chore);
-    auto labelList = ui->frame->findChildren<QLabel *>();
+    auto labelList = frame->findChildren<QLabel *>();
     int i {0};
     for (auto &&label : labelList) {
         label->setText(tasks[i]);
@@ -83,7 +95,7 @@ void MainWindow::permDelete() {
 void MainWindow::restoreDeleted() {
     Combo *c = qobject_cast<Combo *>(sender());
     complTasks.removeAt(c->p);
-    auto widget = new Form(ui->frame, QString(c->text));
+    auto widget = new Form(frame, QString(c->text));
     connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
     connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
     widget->setObjectName(QString::fromUtf8("restItem") + QString::number(restored));
@@ -113,7 +125,7 @@ void MainWindow::on_actionExport_triggered() {
     printer.setPageSize(QPageSize(QPageSize::A4));
     printer.setOutputFileName(fileName);
     QStringList taskList;
-    for (auto &&widget : ui->frame->findChildren<QLabel *>())
+    for (auto &&widget : frame->findChildren<QLabel *>())
         taskList.append("<span>&#8226; " + widget->text() + "</span>");
     QTextDocument doc;
     doc.setHtml(taskList.join("<br/><br/>"));
@@ -180,7 +192,7 @@ void MainWindow::readSettings() {
     const QStringList taskList = settings.value("tasks", QStringList()).toStringList();
     for (auto &&task : taskList) {
         tasks.append(task);
-        auto widget = new Form(ui->frame, QString(task));
+        auto widget = new Form(frame, QString(task));
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
         connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
@@ -203,9 +215,9 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     settings.setValue("isMaximized", isMaximized());
     if (!isMaximized())
         settings.setValue("geometry", saveGeometry());
-    settings.setValue("lines", ui->frame->children().count());
+    settings.setValue("lines", frame->children().count());
     tasks.clear();
-    auto labelList = ui->frame->findChildren<QLabel *>();
+    auto labelList = frame->findChildren<QLabel *>();
     for (auto &&label : labelList)
         tasks.append(label->text());
     settings.setValue("tasks", tasks);
