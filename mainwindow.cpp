@@ -226,5 +226,6 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     settings.setValue("completed", complTasks);
     settings.setValue("font", QApplication::font().toString());
     settings.setValue("size", QApplication::font().pointSize());
+    settings.sync();
     event->accept();
 }
