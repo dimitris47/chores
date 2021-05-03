@@ -128,7 +128,7 @@ void MainWindow::on_actionExport_triggered() {
     printer.setOutputFileName(fileName);
     QStringList taskList;
     for (auto &&widget : frame->findChildren<QLabel *>())
-        taskList.append("<span>&#8226; " + widget->text() + "</span>");
+        taskList.append("<span>&#8226; " + widget->text().replace("<", "&#60;") + "</span>");
     QTextDocument doc;
     doc.setHtml(taskList.join("<br/><br/>"));
     doc.print(&printer);
