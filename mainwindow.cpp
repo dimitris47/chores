@@ -31,8 +31,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow() { delete ui; }
 
-void MainWindow::on_exit() { this->close(); }
-
 QString dirToWrite() {
     static QString dir;
     if (!dir.isEmpty())
@@ -149,7 +147,7 @@ void MainWindow::createTrayIcon() {
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(on_toggleShow()));
 
     QAction *quit_action = new QAction("Exit", trayIcon);
-    connect(quit_action, SIGNAL(triggered()), this, SLOT(on_exit()));
+    connect(quit_action, &QAction::triggered, this, [=](){ this->close(); });
 
     QAction *show_hide_action = new QAction("Show/Hide", trayIcon);
     connect(show_hide_action, SIGNAL(triggered()), this, SLOT(on_toggleShow()));

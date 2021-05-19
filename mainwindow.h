@@ -36,7 +36,6 @@ private slots:
     void on_actionExport_triggered();
     void on_actionFont_triggered();
     void on_actionShow_Completed_triggered();
-    void on_exit();
     void on_lineEdit_returnPressed();
     void on_toggleShow();
 
