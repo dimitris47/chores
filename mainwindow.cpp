@@ -78,6 +78,7 @@ void MainWindow::doUpdates() {
     int i {0};
     for (auto &&label : labelList) {
         label->setText(tasks[i]);
+        label->setToolTip(tasks[i]);
         i++;
     }
 }

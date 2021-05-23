@@ -20,8 +20,10 @@ void Form::on_editButton_clicked() {
     int ret = widget->exec();
     if (ret == QDialog::Rejected)
         return;
-    if (ret)
+    if (ret) {
         ui->label->setText(widget->edited);
+        ui->label->setToolTip(ui->label->text());
+    }
 }
 
 void Form::on_deleteButton_clicked() {
