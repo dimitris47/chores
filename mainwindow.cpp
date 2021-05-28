@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     frame->setLayout(layout);
     layout->setAlignment(Qt::AlignTop);
 
-    QScrollArea *scrollArea  = new QScrollArea();
+    QScrollArea *scrollArea = new QScrollArea();
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(frame);
     setCentralWidget(scrollArea);
