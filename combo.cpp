@@ -14,7 +14,7 @@ void Combo::on_listWidget_currentRowChanged(int currentRow) {
 }
 
 void Combo::on_restButton_clicked() {
-    if (ui->listWidget->count()==0)
+    if (ui->listWidget->count() == 0)
         return;
     else {
         text = ui->listWidget->currentItem()->text();
@@ -26,7 +26,7 @@ void Combo::on_restButton_clicked() {
 }
 
 void Combo::on_delButton_clicked() {
-    if (ui->listWidget->count()==0)
+    if (ui->listWidget->count() == 0)
         return;
     else {
         text = ui->listWidget->currentItem()->text();

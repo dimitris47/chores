@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "combo.h"
 #include "form.h"
+#include "global.h"
 #include <QActionGroup>
 #include <QFileDialog>
 #include <QLabel>
@@ -136,11 +137,7 @@ void MainWindow::on_actionExport_triggered() {
 void MainWindow::on_actionAbout_triggered() {
     QMessageBox::about(this, tr("Program Info"),
                        (QApplication::applicationName() + " " + QApplication::applicationVersion() + "<br/><br/>" +
-                        tr("Program created by Dimitris Psathas<br/><br/>"
-                           "Written in C++, built with the Qt5 toolkit<br/><br/>"
-                           "Published under the GNU General Public License v3.0<br/>"
-                           "Qt libraries used under (L)GPL3<br/><br/>"
-                           "&copy; 2020-2021 Dimitris Psathas")));
+                        APPINFO));
 }
 
 void MainWindow::createTrayIcon() {
@@ -186,10 +183,7 @@ void MainWindow::readSettings() {
         restoreGeometry(geometry);
     }
     bool hasLines = settings.value("lines", true).toBool();
-    if (hasLines)
-        lines = settings.value("lines").toInt();
-    else
-        lines = 1;
+    hasLines ? lines = settings.value("lines").toInt() : lines = 1;
     const QStringList taskList = settings.value("tasks", QStringList()).toStringList();
     for (auto &&task : taskList) {
         tasks.append(task);
