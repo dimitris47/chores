@@ -81,6 +81,7 @@ void MainWindow::doUpdates() {
     for (auto &&label : labelList) {
         label->setText(tasks[i]);
         label->setToolTip(tasks[i]);
+        label->setToolTipDuration(800);
         i++;
     }
     savePrefs();
@@ -218,8 +219,7 @@ void MainWindow::savePrefs() {
         settings.setValue("geometry", saveGeometry());
     settings.setValue("lines", frame->children().count());
     tasks.clear();
-    auto labelList = frame->findChildren<QLabel *>();
-    for (auto &&label : labelList)
+    for (auto &&label : frame->findChildren<QLabel *>())
         tasks.append(label->text());
     settings.setValue("tasks", tasks);
     settings.setValue("completed", complTasks);
