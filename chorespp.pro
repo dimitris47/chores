@@ -3,7 +3,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 TARGET = chorespp
 TEMPLATE = app
-VERSION = 1.13.1
+VERSION = 1.14
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \

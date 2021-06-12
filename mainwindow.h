@@ -22,6 +22,7 @@ public:
     QStringList complTasks;
 
 protected:
+    void savePrefs();
     void closeEvent(QCloseEvent *event) override;
 
 public slots:

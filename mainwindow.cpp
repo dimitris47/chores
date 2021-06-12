@@ -62,6 +62,7 @@ void MainWindow::on_lineEdit_returnPressed() {
         ui->lineEdit->setFocus();
         lines++;
     }
+    savePrefs();
 }
 
 void MainWindow::on_actionAddTask_triggered() {
@@ -82,16 +83,19 @@ void MainWindow::doUpdates() {
         label->setToolTip(tasks[i]);
         i++;
     }
+    savePrefs();
 }
 
 void MainWindow::moveCompleted() {
     Form *f = qobject_cast<Form *>(sender());
     complTasks.append(f->completed);
+    savePrefs();
 }
 
 void MainWindow::permDelete() {
     Combo *c = qobject_cast<Combo *>(sender());
     complTasks.removeAt(c->p);
+    savePrefs();
 }
 
 void MainWindow::restoreDeleted() {
@@ -105,6 +109,7 @@ void MainWindow::restoreDeleted() {
     layout->addWidget(widget);
     widget->show();
     restored++;
+    savePrefs();
 }
 
 void MainWindow::on_actionShow_Completed_triggered() {
@@ -112,6 +117,7 @@ void MainWindow::on_actionShow_Completed_triggered() {
     connect(widget, &Combo::deleted, this, &MainWindow::permDelete);
     connect(widget, &Combo::restored, this, &MainWindow::restoreDeleted);
     widget->exec();
+    savePrefs();
 }
 
 void MainWindow::on_actionFont_triggered() {
@@ -205,7 +211,7 @@ void MainWindow::readSettings() {
     restored = 0;
 }
 
-void MainWindow::closeEvent(QCloseEvent *event) {
+void MainWindow::savePrefs() {
     QSettings settings;
     settings.setValue("isMaximized", isMaximized());
     if (!isMaximized())
@@ -220,5 +226,9 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     settings.setValue("font", QApplication::font().toString());
     settings.setValue("size", QApplication::font().pointSize());
     settings.sync();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    savePrefs();
     event->accept();
 }
