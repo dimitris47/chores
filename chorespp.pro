@@ -3,7 +3,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 TARGET = chorespp
 TEMPLATE = app
-VERSION = 1.14.1
+VERSION = 1.15
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
@@ -12,7 +12,8 @@ SOURCES += \
     form.cpp \
     main.cpp \
     mainwindow.cpp \
-    runguard.cpp
+    runguard.cpp \
+    tasks.cpp
 
 HEADERS += \
     combo.h \
@@ -20,7 +21,8 @@ HEADERS += \
     form.h \
     global.h \
     mainwindow.h \
-    runguard.h
+    runguard.h \
+    tasks.h
 
 FORMS += \
     combo.ui \

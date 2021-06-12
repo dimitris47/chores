@@ -18,8 +18,6 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QStringList choreList;
-    QStringList complTasks;
 
 protected:
     void savePrefs();
@@ -27,7 +25,6 @@ protected:
 
 public slots:
     void doUpdates();
-    void moveCompleted();
     void permDelete();
     void restoreDeleted();
 
@@ -44,7 +41,6 @@ private:
     Ui::MainWindow *ui;
     int lines;
     int restored;
-    QStringList tasks;
     QVBoxLayout *layout;
     QFrame *frame;
     void createTrayIcon();

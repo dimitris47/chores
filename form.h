@@ -13,12 +13,9 @@ public:
     explicit Form();
     explicit Form(QWidget *parent, QString text);
     ~Form();
-    QStringList choresList;
-    QStringList completed;
 
 signals:
     void valueChanged();
-    void taskCompleted();
 
 private slots:
     void on_deleteButton_clicked();

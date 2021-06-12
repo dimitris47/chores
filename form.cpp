@@ -1,6 +1,7 @@
 #include "form.h"
 #include "ui_form.h"
 #include "mainwindow.h"
+#include "tasks.h"
 #include <QRadioButton>
 
 Form::Form() {}
@@ -33,37 +34,36 @@ void Form::on_deleteButton_clicked() {
 void Form::on_downButton_clicked() {
     auto formsList = this->parent()->findChildren<QLabel *>();
     for (auto &&label : formsList)
-        choresList.append(label->text());
+        Tasks::tasks.append(label->text());
     QString chore = ui->label->text();
-    int i = choresList.indexOf(chore);
-    if (i < choresList.size()-1)
+    int i = Tasks::tasks.indexOf(chore);
+    if (i < Tasks::tasks.size()-1)
         #if QT_VERSION >= 0x050E02
-            choresList.swapItemsAt(i, i+1);
+            Tasks::tasks.swapItemsAt(i, i+1);
         #else
-            choresList.swap(i, i+1);
+            Tasks::tasks.swap(i, i+1);
         #endif
     emit valueChanged();
-    choresList.clear();
+    Tasks::tasks.clear();
 }
 
 void Form::on_upButton_clicked() {
     auto formsList = this->parent()->findChildren<QLabel *>();
     for (auto &&label : formsList)
-        choresList.append(label->text());
+        Tasks::tasks.append(label->text());
     QString chore = ui->label->text();
-    int i = choresList.indexOf(chore);
+    int i = Tasks::tasks.indexOf(chore);
     if (i)
         #if QT_VERSION >= 0x050E02
-            choresList.swapItemsAt(i, i-1);
+            Tasks::tasks.swapItemsAt(i, i-1);
         #else
-            choresList.swap(i, i-1);
+            Tasks::tasks.swap(i, i-1);
         #endif
     emit valueChanged();
-    choresList.clear();
+    Tasks::tasks.clear();
 }
 
 void Form::on_radioButton_clicked() {
-    completed.append(ui->label->text());
-    emit taskCompleted();
+    Tasks::completed.append(ui->label->text());
     this->close();
 }

@@ -3,6 +3,7 @@
 #include "combo.h"
 #include "form.h"
 #include "global.h"
+#include "tasks.h"
 #include <QActionGroup>
 #include <QFileDialog>
 #include <QLabel>
@@ -52,8 +53,7 @@ void MainWindow::on_lineEdit_returnPressed() {
     if (text != "") {
         auto widget = new Form(frame, text);
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
-        connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
-        tasks.append(text);
+        Tasks::tasks.append(text);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
         widget->setAttribute(Qt::WA_DeleteOnClose);
         layout->addWidget(widget);
@@ -71,40 +71,27 @@ void MainWindow::on_actionAddTask_triggered() {
 
 
 void MainWindow::doUpdates() {
-    Form *f = qobject_cast<Form *>(sender());
-    tasks.clear();
-    choreList = f->choresList;
-    for (auto &&chore : choreList)
-        tasks.append(chore);
     auto labelList = frame->findChildren<QLabel *>();
     int i {0};
     for (auto &&label : labelList) {
-        label->setText(tasks[i]);
-        label->setToolTip(tasks[i]);
-        label->setToolTipDuration(800);
+        label->setText(Tasks::tasks[i]);
+        label->setToolTip(Tasks::tasks[i]);
         i++;
     }
     savePrefs();
 }
 
-void MainWindow::moveCompleted() {
-    Form *f = qobject_cast<Form *>(sender());
-    complTasks.append(f->completed);
-    savePrefs();
-}
-
 void MainWindow::permDelete() {
     Combo *c = qobject_cast<Combo *>(sender());
-    complTasks.removeAt(c->p);
+    Tasks::completed.removeAt(c->p);
     savePrefs();
 }
 
 void MainWindow::restoreDeleted() {
     Combo *c = qobject_cast<Combo *>(sender());
-    complTasks.removeAt(c->p);
+    Tasks::completed.removeAt(c->p);
     auto widget = new Form(frame, QString(c->text));
     connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
-    connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
     widget->setObjectName(QString::fromUtf8("restItem") + QString::number(restored));
     widget->setAttribute(Qt::WA_DeleteOnClose);
     layout->addWidget(widget);
@@ -114,7 +101,7 @@ void MainWindow::restoreDeleted() {
 }
 
 void MainWindow::on_actionShow_Completed_triggered() {
-    auto widget = new Combo(this, complTasks);
+    auto widget = new Combo(this, Tasks::completed);
     connect(widget, &Combo::deleted, this, &MainWindow::permDelete);
     connect(widget, &Combo::restored, this, &MainWindow::restoreDeleted);
     widget->exec();
@@ -193,10 +180,9 @@ void MainWindow::readSettings() {
     hasLines ? lines = settings.value("lines").toInt() : lines = 1;
     const QStringList taskList = settings.value("tasks", QStringList()).toStringList();
     for (auto &&task : taskList) {
-        tasks.append(task);
+        Tasks::tasks.append(task);
         auto widget = new Form(frame, QString(task));
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
-        connect(widget, &Form::taskCompleted, this, &MainWindow::moveCompleted);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
         widget->setAttribute(Qt::WA_DeleteOnClose);
         layout->addWidget(widget);
@@ -204,7 +190,7 @@ void MainWindow::readSettings() {
     }
     const QStringList completedItems = settings.value("completed", QStringList()).toStringList();
     for (auto &&task : completedItems)
-        complTasks.append(task);
+        Tasks::completed.append(task);
     const QString f = settings.value("font", QFont()).toString();
     const int s = settings.value("size", 11).toInt();
     const QFont font(f, s);
@@ -218,11 +204,8 @@ void MainWindow::savePrefs() {
     if (!isMaximized())
         settings.setValue("geometry", saveGeometry());
     settings.setValue("lines", frame->children().count());
-    tasks.clear();
-    for (auto &&label : frame->findChildren<QLabel *>())
-        tasks.append(label->text());
-    settings.setValue("tasks", tasks);
-    settings.setValue("completed", complTasks);
+    settings.setValue("tasks", Tasks::tasks);
+    settings.setValue("completed", Tasks::completed);
     settings.setValue("font", QApplication::font().toString());
     settings.setValue("size", QApplication::font().pointSize());
     settings.sync();

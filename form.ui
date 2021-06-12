@@ -26,7 +26,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move task down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="toolTipDuration">
-      <number>800</number>
+      <number>-1</number>
      </property>
      <property name="text">
       <string/>
@@ -43,7 +43,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move task up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="toolTipDuration">
-      <number>800</number>
+      <number>-1</number>
      </property>
      <property name="text">
       <string/>
@@ -60,7 +60,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move task to completed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="toolTipDuration">
-      <number>800</number>
+      <number>-1</number>
      </property>
      <property name="text">
       <string/>
@@ -79,7 +79,7 @@
       <enum>Qt::DefaultContextMenu</enum>
      </property>
      <property name="toolTipDuration">
-      <number>800</number>
+      <number>-1</number>
      </property>
      <property name="inputMethodHints">
       <set>Qt::ImhNone</set>
@@ -107,7 +107,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edit task&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="toolTipDuration">
-      <number>800</number>
+      <number>-1</number>
      </property>
      <property name="text">
       <string/>
@@ -130,7 +130,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete task&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="toolTipDuration">
-      <number>800</number>
+      <number>-1</number>
      </property>
      <property name="text">
       <string/>
