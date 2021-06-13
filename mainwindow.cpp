@@ -52,6 +52,7 @@ void MainWindow::on_lineEdit_returnPressed() {
     QString text = ui->lineEdit->text();
     if (text != "") {
         auto widget = new Form(frame, text);
+        connect(widget, &Form::deleted,      this, &MainWindow::deleteTask);
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
         Tasks::tasks.append(text);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
@@ -69,6 +70,14 @@ void MainWindow::on_actionAddTask_triggered() {
     on_lineEdit_returnPressed();
 }
 
+void MainWindow::deleteTask() {
+    Form *f = qobject_cast<Form *>(sender());
+        auto tasks = frame->findChildren<Form *>();
+        for (int i = 0; i < tasks.count(); i++)
+            if (tasks.at(i) == f)
+                Tasks::tasks.removeAt(i);
+    savePrefs();
+}
 
 void MainWindow::doUpdates() {
     auto labelList = frame->findChildren<QLabel *>();
@@ -182,6 +191,7 @@ void MainWindow::readSettings() {
     for (auto &&task : taskList) {
         Tasks::tasks.append(task);
         auto widget = new Form(frame, QString(task));
+        connect(widget, &Form::deleted,      this, &MainWindow::deleteTask);
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
         widget->setAttribute(Qt::WA_DeleteOnClose);

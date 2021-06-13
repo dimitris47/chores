@@ -15,6 +15,7 @@ public:
     ~Form();
 
 signals:
+    void deleted();
     void valueChanged();
 
 private slots:

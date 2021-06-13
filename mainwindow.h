@@ -24,6 +24,7 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 public slots:
+    void deleteTask();
     void doUpdates();
     void permDelete();
     void restoreDeleted();

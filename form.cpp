@@ -28,11 +28,13 @@ void Form::on_editButton_clicked() {
 }
 
 void Form::on_deleteButton_clicked() {
+    emit deleted();
     this->close();
 }
 
 void Form::on_downButton_clicked() {
     auto formsList = this->parent()->findChildren<QLabel *>();
+    Tasks::tasks.clear();
     for (auto &&label : formsList)
         Tasks::tasks.append(label->text());
     QString chore = ui->label->text();
@@ -44,11 +46,11 @@ void Form::on_downButton_clicked() {
             Tasks::tasks.swap(i, i+1);
         #endif
     emit valueChanged();
-    Tasks::tasks.clear();
 }
 
 void Form::on_upButton_clicked() {
     auto formsList = this->parent()->findChildren<QLabel *>();
+    Tasks::tasks.clear();
     for (auto &&label : formsList)
         Tasks::tasks.append(label->text());
     QString chore = ui->label->text();
@@ -60,7 +62,6 @@ void Form::on_upButton_clicked() {
             Tasks::tasks.swap(i, i-1);
         #endif
     emit valueChanged();
-    Tasks::tasks.clear();
 }
 
 void Form::on_radioButton_clicked() {
