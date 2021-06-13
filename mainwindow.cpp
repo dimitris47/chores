@@ -65,6 +65,7 @@ void MainWindow::on_lineEdit_returnPressed() {
         lines++;
     }
     savePrefs();
+    ui->lineEdit->setFocus();
 }
 
 void MainWindow::on_actionAddTask_triggered() {
