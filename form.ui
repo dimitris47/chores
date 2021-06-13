@@ -24,13 +24,13 @@
     <widget class="QPushButton" name="downButton">
      <property name="minimumSize">
       <size>
-       <width>0</width>
+       <width>18</width>
        <height>22</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>20</width>
+       <width>18</width>
        <height>22</height>
       </size>
      </property>
@@ -62,13 +62,13 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>0</width>
+       <width>18</width>
        <height>22</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>20</width>
+       <width>18</width>
        <height>22</height>
       </size>
      </property>
@@ -89,6 +89,22 @@
       <bool>true</bool>
      </property>
     </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>8</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <widget class="QLabel" name="label">
@@ -131,13 +147,13 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>22</width>
+       <width>20</width>
        <height>22</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>22</width>
+       <width>20</width>
        <height>22</height>
       </size>
      </property>
@@ -163,13 +179,13 @@
     <widget class="QPushButton" name="pushButton">
      <property name="minimumSize">
       <size>
-       <width>22</width>
+       <width>20</width>
        <height>22</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>26</width>
+       <width>20</width>
        <height>22</height>
       </size>
      </property>
@@ -201,13 +217,13 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>22</width>
+       <width>20</width>
        <height>22</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>22</width>
+       <width>20</width>
        <height>22</height>
       </size>
      </property>
