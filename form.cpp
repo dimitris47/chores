@@ -24,6 +24,7 @@ void Form::on_editButton_clicked() {
     if (ret) {
         ui->label->setText(widget->edited);
         ui->label->setToolTip(ui->label->text());
+        emit taskEdited();
     }
 }
 

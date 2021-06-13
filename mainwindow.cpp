@@ -53,6 +53,7 @@ void MainWindow::on_lineEdit_returnPressed() {
     if (text != "") {
         auto widget = new Form(frame, text);
         connect(widget, &Form::deleted,      this, &MainWindow::deleteTask);
+        connect(widget, &Form::taskEdited,   this, &MainWindow::editTask);
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
         Tasks::tasks.append(text);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
@@ -72,17 +73,23 @@ void MainWindow::on_actionAddTask_triggered() {
 
 void MainWindow::deleteTask() {
     Form *f = qobject_cast<Form *>(sender());
-        auto tasks = frame->findChildren<Form *>();
-        for (int i = 0; i < tasks.count(); i++)
-            if (tasks.at(i) == f)
-                Tasks::tasks.removeAt(i);
+    auto tasks = frame->findChildren<Form *>();
+    for (int i = 0; i < tasks.count(); i++)
+        if (tasks.at(i) == f)
+            Tasks::tasks.removeAt(i);
+    savePrefs();
+}
+
+void MainWindow::editTask() {
+    Tasks::tasks.clear();
+    for (auto &&label : frame->findChildren<QLabel *>())
+        Tasks::tasks.append(label->text());
     savePrefs();
 }
 
 void MainWindow::doUpdates() {
-    auto labelList = frame->findChildren<QLabel *>();
     int i {0};
-    for (auto &&label : labelList) {
+    for (auto &&label : frame->findChildren<QLabel *>()) {
         label->setText(Tasks::tasks[i]);
         label->setToolTip(Tasks::tasks[i]);
         i++;
@@ -111,7 +118,7 @@ void MainWindow::restoreDeleted() {
 
 void MainWindow::on_actionShow_Completed_triggered() {
     auto widget = new Combo(this, Tasks::completed);
-    connect(widget, &Combo::deleted, this, &MainWindow::permDelete);
+    connect(widget, &Combo::deleted,  this, &MainWindow::permDelete);
     connect(widget, &Combo::restored, this, &MainWindow::restoreDeleted);
     widget->exec();
     savePrefs();
@@ -192,6 +199,7 @@ void MainWindow::readSettings() {
         Tasks::tasks.append(task);
         auto widget = new Form(frame, QString(task));
         connect(widget, &Form::deleted,      this, &MainWindow::deleteTask);
+        connect(widget, &Form::taskEdited,   this, &MainWindow::editTask);
         connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
         widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
         widget->setAttribute(Qt::WA_DeleteOnClose);

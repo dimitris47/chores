@@ -26,6 +26,7 @@ protected:
 public slots:
     void deleteTask();
     void doUpdates();
+    void editTask();
     void permDelete();
     void restoreDeleted();
 

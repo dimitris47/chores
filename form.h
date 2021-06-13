@@ -16,6 +16,7 @@ public:
 
 signals:
     void deleted();
+    void taskEdited();
     void valueChanged();
 
 private slots:
