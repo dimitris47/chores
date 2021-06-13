@@ -45,7 +45,7 @@
      </property>
      <property name="icon">
       <iconset resource="chorespp.qrc">
-       <normaloff>:/icons/go-up2.png</normaloff>:/icons/go-up2.png</iconset>
+       <normaloff>:/icons/go-down2.png</normaloff>:/icons/go-down2.png</iconset>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -83,7 +83,7 @@
      </property>
      <property name="icon">
       <iconset resource="chorespp.qrc">
-       <normaloff>:/icons/go-down2.png</normaloff>:/icons/go-down2.png</iconset>
+       <normaloff>:/icons/go-up2.png</normaloff>:/icons/go-up2.png</iconset>
      </property>
      <property name="flat">
       <bool>true</bool>
