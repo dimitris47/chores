@@ -65,7 +65,8 @@ void Form::on_upButton_clicked() {
     emit valueChanged();
 }
 
-void Form::on_radioButton_clicked() {
+void Form::on_pushButton_clicked() {
     Tasks::completed.append(ui->label->text());
     this->close();
 }
+

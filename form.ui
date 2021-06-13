@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>544</width>
-    <height>44</height>
+    <height>43</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,6 +22,12 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QPushButton" name="downButton">
+     <property name="maximumSize">
+      <size>
+       <width>20</width>
+       <height>22</height>
+      </size>
+     </property>
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move task down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -33,12 +39,21 @@
      </property>
      <property name="icon">
       <iconset resource="chorespp.qrc">
-       <normaloff>:/icons/go-down.png</normaloff>:/icons/go-down.png</iconset>
+       <normaloff>:/icons/go-up2.png</normaloff>:/icons/go-up2.png</iconset>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="upButton">
+     <property name="maximumSize">
+      <size>
+       <width>20</width>
+       <height>22</height>
+      </size>
+     </property>
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move task up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -50,12 +65,27 @@
      </property>
      <property name="icon">
       <iconset resource="chorespp.qrc">
-       <normaloff>:/icons/go-up.png</normaloff>:/icons/go-up.png</iconset>
+       <normaloff>:/icons/go-down2.png</normaloff>:/icons/go-down2.png</iconset>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QRadioButton" name="radioButton">
+    <widget class="QPushButton" name="pushButton">
+     <property name="minimumSize">
+      <size>
+       <width>26</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>26</width>
+       <height>22</height>
+      </size>
+     </property>
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Move task to completed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -64,6 +94,13 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="chorespp.qrc">
+       <normaloff>:/icons/dialog-ok-apply.png</normaloff>:/icons/dialog-ok-apply.png</iconset>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -103,6 +140,12 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="maximumSize">
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
+     </property>
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edit task&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -116,6 +159,9 @@
       <iconset resource="chorespp.qrc">
        <normaloff>:/icons/edit.png</normaloff>:/icons/edit.png</iconset>
      </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -125,6 +171,12 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
      </property>
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete task&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -137,7 +189,10 @@
      </property>
      <property name="icon">
       <iconset resource="chorespp.qrc">
-       <normaloff>:/icons/edit-delete.png</normaloff>:/icons/edit-delete.png</iconset>
+       <normaloff>:/icons/list-remove.png</normaloff>:/icons/list-remove.png</iconset>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

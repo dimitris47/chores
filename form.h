@@ -23,7 +23,7 @@ private slots:
     void on_deleteButton_clicked();
     void on_downButton_clicked();
     void on_editButton_clicked();
-    void on_radioButton_clicked();
+    void on_pushButton_clicked();
     void on_upButton_clicked();
 
 private:
