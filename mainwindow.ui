@@ -65,7 +65,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionAddTask"/>
    <addaction name="actionShow_Completed"/>
    <addaction name="actionFont"/>
    <addaction name="actionExport"/>
@@ -120,18 +119,6 @@
    </property>
    <property name="text">
     <string>Font</string>
-   </property>
-  </action>
-  <action name="actionAddTask">
-   <property name="icon">
-    <iconset resource="chorespp.qrc">
-     <normaloff>:/icons/document-new.png</normaloff>:/icons/document-new.png</iconset>
-   </property>
-   <property name="text">
-    <string>Add task to list</string>
-   </property>
-   <property name="toolTip">
-    <string>Add task to list</string>
    </property>
   </action>
  </widget>

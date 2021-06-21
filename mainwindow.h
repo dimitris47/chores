@@ -32,7 +32,6 @@ public slots:
 
 private slots:
     void on_actionAbout_triggered();
-    void on_actionAddTask_triggered();
     void on_actionExport_triggered();
     void on_actionFont_triggered();
     void on_actionShow_Completed_triggered();

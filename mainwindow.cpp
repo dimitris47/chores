@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     setCentralWidget(scrollArea);
     ui->lineEdit->setAlignment(Qt::AlignHCenter);
     ui->lineEdit->setPlaceholderText("new task");
+    ui->lineEdit->setToolTip("press Enter to save the typed task");
+    ui->lineEdit->setToolTipDuration(2000);
     layout->addWidget(ui->lineEdit);
 
     readSettings();
@@ -66,10 +68,6 @@ void MainWindow::on_lineEdit_returnPressed() {
     }
     savePrefs();
     ui->lineEdit->setFocus();
-}
-
-void MainWindow::on_actionAddTask_triggered() {
-    on_lineEdit_returnPressed();
 }
 
 void MainWindow::deleteTask() {

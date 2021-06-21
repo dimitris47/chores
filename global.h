@@ -4,7 +4,7 @@
 #include <QString>
 
 const QString APPNAME("Chores");
-const QString VERSION("2.1.2");
+const QString VERSION("2.2");
 const QString CONTRIBUTORS("Dimitris Psathas");
 const QString APPINFO("Program created by Dimitris Psathas<br/><br/>"
                       "Written in C++, built against Qt 5.15.2<br/><br/>"
