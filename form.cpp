@@ -67,6 +67,7 @@ void Form::on_upButton_clicked() {
 
 void Form::on_pushButton_clicked() {
     Tasks::completed.append(ui->label->text());
+    Tasks::tasks.removeOne(ui->label->text());
     this->close();
 }
 

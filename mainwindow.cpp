@@ -52,20 +52,22 @@ QString dirToWrite() {
 
 void MainWindow::on_lineEdit_returnPressed() {
     QString text = ui->lineEdit->text();
-    if (text != "") {
-        auto widget = new Form(frame, text);
-        connect(widget, &Form::deleted,      this, &MainWindow::deleteTask);
-        connect(widget, &Form::taskEdited,   this, &MainWindow::editTask);
-        connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
-        Tasks::tasks.append(text);
-        widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
-        widget->setAttribute(Qt::WA_DeleteOnClose);
-        layout->addWidget(widget);
-        widget->show();
-        ui->lineEdit->clear();
-        ui->lineEdit->setFocus();
-        lines++;
-    }
+    if (text != "")
+        qDebug() << Tasks::completed;
+        if (!Tasks::tasks.contains(text) && !Tasks::completed.contains(text)) {
+            auto widget = new Form(frame, text);
+            connect(widget, &Form::deleted,      this, &MainWindow::deleteTask);
+            connect(widget, &Form::taskEdited,   this, &MainWindow::editTask);
+            connect(widget, &Form::valueChanged, this, &MainWindow::doUpdates);
+            Tasks::tasks.append(text);
+            widget->setObjectName(QString::fromUtf8("formItem") + QString::number(lines));
+            widget->setAttribute(Qt::WA_DeleteOnClose);
+            layout->addWidget(widget);
+            widget->show();
+            ui->lineEdit->clear();
+            ui->lineEdit->setFocus();
+            lines++;
+        }
     savePrefs();
     ui->lineEdit->setFocus();
 }
