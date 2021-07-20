@@ -45,7 +45,7 @@ unix:!android {
 win32 {
     VERSION = $${VERSION}.0.0
     QMAKE_TARGET_COMPANY = DP Software
-    QMAKE_TARGET_DESCRIPTION = A simple and very lightweight to-do app
+    QMAKE_TARGET_DESCRIPTION = A simple to-do app
     QMAKE_TARGET_COPYRIGHT = \\251 2020 Dimitris Psathas
     QMAKE_TARGET_PRODUCT = Chores
     RC_ICONS = icons/chorespp.ico

@@ -1,6 +1,6 @@
 # chores
 
-Chores is a very simple and also very lightweight to-do application.
+Chores is a very simple to-do application.
 
 HOW TO INSTALL:
 
